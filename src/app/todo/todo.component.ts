@@ -9,6 +9,7 @@ import {Model} from "../model";
 })
 export class TodoComponent {
 
+  message = "";
   constructor() { }
 
   model = new Model();
@@ -34,6 +35,19 @@ export class TodoComponent {
 
   getItems(){
     return this.model.items;
+  }
+
+  // addItem(txtItem: any){
+  //   console.log(txtItem.value)
+  // }
+  addItem(value: string){
+    // console.log(value)
+    // this.message = value;
+    if(value != ""){
+      this.model.items.push(  { description: value, action: "Todo"})
+    }else{
+      alert("enter information")
+    }
   }
 
 
