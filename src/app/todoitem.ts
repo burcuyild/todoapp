@@ -19,6 +19,6 @@
 
 export interface Todoitem{
   description: string;
-  action: string;
+  action: boolean;
 }
 

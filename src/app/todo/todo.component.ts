@@ -8,8 +8,8 @@ import {Model} from "../model";
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent {
-
-  message = "";
+  displayAll:boolean = false;
+  message: string = "hello";
   constructor() { }
 
   model = new Model();
@@ -34,7 +34,11 @@ export class TodoComponent {
   }
 
   getItems(){
-    return this.model.items;
+    if(this.displayAll){
+      return this.model.items;
+
+    }
+    return this.model.items.filter(item => !item.action)
   }
 
   // addItem(txtItem: any){
@@ -44,7 +48,7 @@ export class TodoComponent {
     // console.log(value)
     // this.message = value;
     if(value != ""){
-      this.model.items.push(  { description: value, action: "Todo"})
+      this.model.items.push(  { description: value, action: false})
     }else{
       alert("enter information")
     }

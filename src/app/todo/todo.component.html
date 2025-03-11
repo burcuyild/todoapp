@@ -5,16 +5,17 @@
                 {{ getName() }} 's LIST
             </h3>
             <div class="input-group mb-3">
-                <input #txtItem type="text" class="form-control"
+              <!-- <input [(ngModel)]="message" 2 way binding -->
+              <input #txtItem type="text" class="form-control"
                        (keyup.enter)="addItem(txtItem.value); txtItem.value=''">
                 <button class="btn btn-outline-primary" (click)="addItem(txtItem.value); txtItem.value=''">Add</button>
             </div>
 
-          {{ message }}
             <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="displayAll">
+                <input type="checkbox" [(ngModel)]="displayAll" class="form-check-input" id="displayAll">
                 <label for="displayAll" class="form-check-label">Display All</label>
             </div>
+          {{ message }}
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -28,6 +29,9 @@
                         <td>{{ i + 1}}</td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.action }}</td>
+                        <td>
+                          <input type="checkbox" [(ngModel)]="item.action">
+                        </td>
                     </tr>
                 </tbody>
             </table>

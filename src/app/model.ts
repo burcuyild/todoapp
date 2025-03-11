@@ -7,8 +7,8 @@ export class Model{
   constructor() {
     this.name ="Burcu";
     this.items = [
-      { description: "Breakfast", action: "Done"},
-      { description: "Shoppping", action: "Done"},
-      { description: "Tennis", action: "Todo"}    ]
+      { description: "Breakfast", action: true},
+      { description: "Shoppping", action: true},
+      { description: "Tennis", action: false}    ]
   }
 }
