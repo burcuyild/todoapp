@@ -9,7 +9,7 @@ import {Model} from "../model";
 })
 export class TodoComponent {
   displayAll:boolean = false;
-  message: string = "hello";
+  // message: string = "hello";
   constructor() { }
 
   model = new Model();
