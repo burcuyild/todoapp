@@ -10,6 +10,7 @@ import {Model} from "../model";
 export class TodoComponent {
   displayAll:boolean = false;
   // message: string = "hello";
+  inputText: string = "";
   constructor() { }
 
   model = new Model();
@@ -44,11 +45,12 @@ export class TodoComponent {
   // addItem(txtItem: any){
   //   console.log(txtItem.value)
   // }
-  addItem(value: string){
+  addItem(){
     // console.log(value)
     // this.message = value;
-    if(value != ""){
-      this.model.items.push(  { description: value, action: false})
+    if(this.inputText != ""){
+      this.model.items.push(  { description: this.inputText, action: false})
+      this.inputText="";
     }else{
       alert("enter information")
     }
@@ -58,5 +60,12 @@ export class TodoComponent {
     return this.model.items.filter(i=>i.action).length;
   }
 
+  getBtnClasses(){
+      return{
+         'disabled': this.inputText.length==0,
+         'btn-secondary': this.inputText.length==0,
+         'btn-primary': this.inputText.length>0
+      }
+  }
 
 }

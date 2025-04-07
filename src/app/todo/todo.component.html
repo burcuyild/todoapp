@@ -5,10 +5,21 @@
                 {{ getName() }} 's LIST
             </h3>
             <div class="input-group mb-3">
-              <!-- <input [(ngModel)]="message" 2 way binding -->
               <input #txtItem type="text" class="form-control"
-                       (keyup.enter)="addItem(txtItem.value); txtItem.value=''">
-                <button class="btn btn-outline-primary" (click)="addItem(txtItem.value); txtItem.value=''">Add</button>
+                     [(ngModel)]="inputText"
+                       (keyup.enter)="addItem();"
+              >
+              <!--                  [class.disabled]="inputText.length==0"-->
+<!--              [class]="{-->
+<!--              'disabled': inputText.length==0,-->
+<!--              'btn-secondary': inputText.length==0,-->
+<!--              'btn-primary': inputText.length>0-->
+
+<!--              }"-->
+              <button
+                [class]="getBtnClasses()"
+                  class="btn"
+                  (click)="addItem(); txtItem.value=''">Add</button>
             </div>
 
             <div class="form-check mb-3">
@@ -37,33 +48,17 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let item of getItems(); let i = index;">
+<!--              <tr *ngFor="let item of getItems(); let i = index;" [class.bg-primary]="item.action"-->
+              <tr *ngFor="let item of getItems(); let i = index;" [class]= "{ 'bg-primary': item.action, 'bg-warning': !item.action}"
+                  [class.bg-warning]="!item.action">
+<!--                <td>{{ item | json }}</td>-->
+
                 <td>{{ i + 1}}</td>
-                <td>{{ item.description }}</td>
                 <td>
-                  <!--                          <div *ngIf="item.action">Yes</div>-->
-                  <!--                          <div *ngIf="!item.action">No</div>-->
+                  {{ item.description }}
+                </td>
+                <td>
 
-<!--                  <div [ngSwitch]="item.action">-->
-<!--                    <div *ngSwitchCase="true">Yes</div>-->
-<!--                    <div *ngSwitchDefault>No</div>-->
-<!--                  </div>-->
-
-<!--                  <div *ngIf="item.action; else noTemplate">-->
-<!--                    Yes-->
-<!--                  </div>-->
-
-<!--                  <ng-template #noTemplate>-->
-<!--                    No-->
-<!--                  </ng-template>-->
-
-<!--                  <div *ngIf="item.action; then noTemplate">-->
-<!--                    Yes-->
-<!--                  </div>-->
-
-<!--                  <ng-template #noTemplate>-->
-<!--                    No-->
-<!--                  </ng-template>-->
 
                   <div *ngIf="item.action; then yesTemplate else noTemplate">
                     Yes
@@ -85,14 +80,6 @@
               </tbody>
             </table>
           </ng-template>
-<!--          <ul>-->
-<!--            <li *ngFor="let item of items">-->
-<!--            {{ item }}-->
-<!--          </ul>-->
-<!--          <div>-->
-<!--            <p *ngFor="let item of items">-->
-<!--            {{ item.description }}-->
-<!--          </div>-->
         </div>
     </div>
 </div>
